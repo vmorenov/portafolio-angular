@@ -1,0 +1,32 @@
+<div class="container text-center">
+    <h2 class="mb-4">Contáctame</h2>
+
+    <div class="d-flex justify-content-center mb-4 gap-4 fs-4">
+        <a href="https://wa.me/56990070608" target="_blank" class="text-success">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/victor-andres-moreno-310822b4/" target="_blank" class="text-primary">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="mailto:victor.moreno.info@gmail.com" class="text-dark">
+            <i class="bi bi-envelope-fill"></i>
+        </a>
+    </div>
+
+    <form (submit)="sendEmail($event)" #contactForm="ngForm" class="row g-3 justify-content-center">
+        <div class="col-md-6">
+            <input type="text" name="name" class="form-control" placeholder="Nombre" required ngModel>
+        </div>
+        <div class="col-md-6">
+            <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required ngModel>
+        </div>
+        <div class="col-12">
+            <textarea name="message" class="form-control" rows="4" placeholder="Tu mensaje..." required
+                ngModel></textarea>
+        </div>
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </div>
+    </form>
+
+</div>

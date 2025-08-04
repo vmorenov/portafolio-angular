@@ -1,0 +1,13 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-6 col-md-4 mb-4" *ngFor="let project of projectList">
+    <a [href]="project.link" target="_blank" class="text-decoration-none text-dark">
+      <div class="card h-100 shadow-sm">
+        <img [src]="project.image" class="card-img-top p-4" alt="{{project.title}}" style="height: 150px; object-fit: contain;">
+        <div class="card-body">
+          <h5 class="card-title">{{project.title}}</h5>
+          <p class="card-text">{{project.description}}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
