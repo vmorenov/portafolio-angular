@@ -1,5 +1,5 @@
 {
-  "name": "demo-transporte-v1",
+  "name": "portafolio-vm",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:demo-transporte-v1": "node dist/demo-transporte-v1/server/server.mjs"
+    "serve:ssr:portafolio-vm": "node dist/portafolio-vm/server/server.mjs"
   },
   "prettier": {
     "overrides": [
@@ -35,7 +35,8 @@
     "emailjs-com": "^3.2.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zone.js": "^0.15.1"
   },
   "devDependencies": {
     "@angular/build": "^20.1.2",

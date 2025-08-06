@@ -20,8 +20,8 @@ export class Clients implements AfterViewInit, OnDestroy {
   clients = [
     { name: 'VTR', logo: 'assets/clients/vtr.png', description: 'Integración y APIs para servicios de telecomunicaciones.' },
     { name: 'Cruz Verde', logo: 'assets/clients/CruzVerde.png', description: 'Ecosistema de datos y procesos para retail farmacéutico.' },
-    { name: 'Maicao', logo: 'assets/clients/Maicao.webp', description: 'Automatización de flujos y reporting operativo.' },
-    { name: 'Banco de Chile', logo: 'assets/clients/BcoChile.png', description: 'Integraciones bancarias seguras y alta disponibilidad.' },
+    { name: 'Maicao', logo: 'assets/clients/Maicao.jpg', description: 'Automatización de flujos y reporting operativo.' },
+    { name: 'Banco de Chile', logo: 'assets/clients/bcoChile.jpg', description: 'Integraciones bancarias seguras y alta disponibilidad.' },
     { name: 'Entel', logo: 'assets/clients/entel.png', description: 'Arquitectura para orquestación de servicios y BSS.' },
     { name: 'BNP Paribas Cardif', logo: 'assets/clients/bnp.svg', description: 'Soluciones cloud, pipelines CI/CD y microservicios.' }
   ];
