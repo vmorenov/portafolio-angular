@@ -60,21 +60,23 @@ Este sitio fue creado para presentar mi perfil como profesional TI, destacando:
 ---
 
 ## 🖼️ Estructura Principal
+
 src/
 ├── app/
-│ ├── pages/
-│ │ ├── about/ # Sobre mí + Carrusel/Banner profesional
-│ │ ├── projects/ # Mis proyectos destacados (cards)
-│ │ ├── clients/ # Empresas con las que he trabajado (carrusel/logos)
-│ │ ├── contact/ # Formulario de contacto seguro
-│ └── shared/
-│ ├── navbar/ # Barra de navegación sticky + dark mode
-│ └── footer/ # Footer profesional con contacto/redes
+│   ├── pages/
+│   │   ├── about/      # Sobre mí + Carrusel/Banner profesional
+│   │   ├── projects/   # Mis proyectos destacados (cards)
+│   │   ├── clients/    # Empresas con las que he trabajado (carrusel/logos)
+│   │   └── contact/    # Formulario de contacto seguro
+│   └── shared/
+│       ├── navbar/     # Barra de navegación sticky + dark mode
+│       └── footer/     # Footer profesional con contacto/redes
 ├── assets/
-│ ├── profile.png
-│ └── clients/ # Logos de empresas (optimizado)
-│ └── icons/ # Iconos tech stack
-└── styles.css # Estilos globales con temas
+│   ├── profile.png
+│   ├── clients/        # Logos de empresas (optimizado)
+│   └── icons/          # Iconos tech stack
+└── styles.css          # Estilos globales con temas
+
 
 
 
