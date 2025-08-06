@@ -1,59 +1,111 @@
-# Portafolio Web
+# Portafolio Profesional — Victor Moreno
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.2.
+Bienvenido/a a mi portafolio personal, desarrollado en [Angular 20](https://angular.dev/), donde podrás conocer mis principales proyectos, experiencia profesional y los servicios que ofrezco como **Arquitecto de Soluciones Digitales**.
 
-## Development server
+<div align="center">
+  <img src="src/assets/profile.png" alt="Victor Moreno" width="120" style="border-radius:50%; box-shadow:0 0 8px #aaa;">
+</div>
 
-To start a local development server, run:
+## 🚀 Sobre el proyecto
 
-```bash
-ng serve
-```
+Este sitio fue creado para presentar mi perfil como profesional TI, destacando:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Proyectos de backend (Java Spring Boot, Oracle PL/SQL, BFF, API Gateway, etc).
+- Proyectos de frontend (Angular SPA, Portafolio).
+- Experiencia y certificaciones en Cloud (IBM Cloud).
+- Clientes y empresas con las que he trabajado.
+- Formulario de contacto directo con integración a Google reCAPTCHA v3 y envío seguro.
+- Diseño responsivo, dark mode y animaciones para una experiencia moderna y profesional.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🛠️ Stack Tecnológico
 
-```bash
-ng generate component component-name
-```
+- **Frontend**: Angular 20 Standalone Components + Bootstrap 5 + Bootstrap Icons
+- **SSR**: Angular Universal (Soporte para server-side rendering)
+- **Backend de contacto**: EmailJS (opcional, puedes integrar tu propio backend)
+- **reCAPTCHA**: Google v3 integrado para protección anti-bots
+- **Diseño**: Responsive, Light/Dark Mode, animaciones CSS custom
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 📦 Instalación y uso
 
-## Building
+1. **Clona el repositorio**
+    ```bash
+    git clone https://github.com/vmorenov/autorizaflj.git
+    cd autorizaflj
+    ```
 
-To build the project run:
+2. **Instala dependencias**
+    ```bash
+    npm install
+    ```
 
-```bash
-ng build
-```
+3. **Configura variables necesarias**
+    - Si usas EmailJS o APIs privadas, crea un archivo `.env` o configura los keys directamente según documentación.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4. **Arranca en modo desarrollo**
+    ```bash
+    npm run start
+    # o
+    ng serve
+    ```
 
-## Running unit tests
+5. **Abre tu navegador en**
+    ```
+    http://localhost:4200
+    ```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 🖼️ Estructura Principal
+src/
+├── app/
+│ ├── pages/
+│ │ ├── about/ # Sobre mí + Carrusel/Banner profesional
+│ │ ├── projects/ # Mis proyectos destacados (cards)
+│ │ ├── clients/ # Empresas con las que he trabajado (carrusel/logos)
+│ │ ├── contact/ # Formulario de contacto seguro
+│ └── shared/
+│ ├── navbar/ # Barra de navegación sticky + dark mode
+│ └── footer/ # Footer profesional con contacto/redes
+├── assets/
+│ ├── profile.png
+│ └── clients/ # Logos de empresas (optimizado)
+│ └── icons/ # Iconos tech stack
+└── styles.css # Estilos globales con temas
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🌎 Despliegue
 
-## Additional Resources
+El proyecto está optimizado para ser desplegado en:
+- **Vercel**
+- **Netlify**
+- **Firebase Hosting**
+- **GitHub Pages**
+- **Docker (custom node/nginx SSR)**
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> Revisa la documentación de Angular Universal si necesitas SSR completo.
+
+---
+
+## 🤝 Contribuciones
+
+Si quieres sugerir mejoras, puedes abrir un issue o enviar un PR.  
+¡Se agradece cualquier feedback profesional o técnico!
+
+---
+
+## 📬 Contacto
+
+- **LinkedIn**: [linkedin.com/in/victor-andres-moreno-310822b4](https://www.linkedin.com/in/victor-andres-moreno-310822b4/)
+
+---
+
+## © 2025 Victor Moreno
+
+Proyecto con fines demostrativos y portafolio profesional.
