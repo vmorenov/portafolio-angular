@@ -1,0 +1,2 @@
+.app-footer a { color: var(--footer-text); }
+.app-footer a:hover { text-decoration: underline; }

@@ -1,38 +1,105 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background-color: #f8f9fa;
-  scroll-behavior: smooth;
+/* ---------- Tema (Light / Dark) ---------- */
+:root{
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #0d6efd;
+  --border: #e5e7eb;
+  --nav-bg: #0b1220;
+  --nav-text: #e5e7eb;
+  --footer-bg: #0b1220;
+  --footer-text: #cbd5e1;
 }
 
-main section {
-  padding: 4rem 0;
+.dark-theme{
+  --bg: #0b1220;
+  --surface: #0f172a;
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+  --primary: #60a5fa;
+  --border: #1f2a44;
+  --nav-bg: #0b1220;
+  --nav-text: #e5e7eb;
+  --footer-bg: #0b1220;
+  --footer-text: #9aa4b2;
 }
 
-.card:hover {
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  transform: scale(1.02);
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
+/* Suavizar cambios de tema */
+html, body, .card, .app-surface, .timeline, .app-navbar, .app-footer {
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 
-footer {
-  flex-shrink: 0;
+/* ---------- Base ---------- */
+html, body{
+  background: var(--bg);
+  color: var(--text);
 }
 
-.timeline {
-  border-left: 3px solid #0d6efd;
-  padding-left: 1.5rem;
+/* Compensación de navbar fijo (ajusta si tu navbar es más alto) */
+body { padding-top: 64px; }
+
+/* Ancho máximo uniforme de la SPA */
+main.container{ max-width: 1100px; }
+
+/* Separación entre secciones (sin “pegotes”) */
+section { scroll-margin-top: 84px; }
+section + section { margin-top: 2.5rem; }  /* un poco menos para reducir blancos */
+
+/* Superficies tematizadas */
+.app-surface,
+.card,
+.timeline{
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
 }
 
-.timeline-item::before {
-  content: "";
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #0d6efd;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-  position: relative;
-  top: 5px;
+/* Navbar / Footer */
+.app-navbar{ background: var(--nav-bg) !important; color: var(--nav-text) !important; }
+.app-navbar .nav-link, .app-navbar .navbar-brand{ color: var(--nav-text) !important; }
+.app-navbar .nav-link.active{ text-decoration: underline; }
+
+.app-footer{ background: var(--footer-bg); color: var(--footer-text); border-top: 1px solid var(--border); }
+.app-footer a{ color: var(--footer-text); }
+.app-footer a:hover{ text-decoration: underline; }
+
+/* Botón dark/light */
+.theme-toggle{
+  border: 1px solid rgba(255,255,255,.25);
+  background: transparent;
+  color: var(--nav-text);
+  border-radius: .5rem;
+  padding: .4rem .6rem;
 }
+.theme-toggle:hover{ opacity:.85; }
+
+/* Card hover (projects) */
+.card:hover{
+  box-shadow: 0 0 12px rgba(13,110,253,.28);
+  transform: translateY(-2px);
+}
+
+/* Hero (About) – separación inferior para que no “pise” timeline */
+.hero{ margin-bottom: 2rem; }
+
+/* Timeline acento color primario */
+.timeline{ border-left: 3px solid var(--primary); padding-left: 1.25rem; }
+.timeline-item::before{
+  content:"";
+  width:12px; height:12px; display:inline-block; border-radius:50%;
+  background: var(--primary); position:relative; top:5px; margin-right:.5rem;
+}
+
+/* separaciones globales entre secciones */
+main.container section { margin-bottom: 2.5rem; } /* igual que section + section */
+
+/* extra al final para que no quede pegado al footer */
+section#contact { margin-bottom: 3rem; }
+
+/* por si el contenido de contact no tiene margen propio, añade padding mínimo */
+#contact .container { padding-bottom: 1rem; }
+
+/* el footer no debe “comerse” espacio extra */
+.app-footer { margin-top: 0; }

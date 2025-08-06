@@ -1,14 +1,25 @@
-<footer class="bg-dark text-white py-4 mt-auto">
-  <div class="container text-center">
-    <p class="mb-1">Desarrollado por Víctor Moreno - Arquitecto TI & Desarrollador Fullstack</p>
-    <p class="mb-0">
-      <span class="d-block d-md-inline">
-        <a href="mailto:victor.moreno.info&#64;gmail.com" class="text-white text-decoration-none">victor.moreno.info&#64;gmail.com</a>
-      </span>
-      <span class="d-none d-md-inline"> | </span>
-      <a href="https://www.linkedin.com/in/victor-andres-moreno-310822b4/" class="text-white text-decoration-none" target="_blank">LinkedIn</a>
-      <span class="d-none d-md-inline"> | </span>
-      <a href="https://github.com/vmorenov" class="text-white text-decoration-none" target="_blank">GitHub</a>
-    </p>
+<footer class="app-footer py-4 mt-auto">
+  <div class="container text-center small">
+    <div class="mb-2">
+      <strong>Víctor Moreno</strong> · Arquitecto TI & Desarrollador
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mb-2">
+      <a href="mailto:vmorenov&#64;gmail.com" class="text-decoration-none" aria-label="Email">
+        <i class="bi bi-envelope"></i> vmorenov&#64;gmail.com
+      </a>
+      <span class="text-muted">•</span>
+      <a href="https://www.linkedin.com/in/vmorenov/" target="_blank" rel="noopener" class="text-decoration-none" aria-label="LinkedIn">
+        <i class="bi bi-linkedin"></i> LinkedIn
+      </a>
+      <span class="text-muted">•</span>
+      <a href="https://github.com/vmorenov" target="_blank" rel="noopener" class="text-decoration-none" aria-label="GitHub">
+        <i class="bi bi-github"></i> GitHub
+      </a>
+    </div>
+
+    <div class="text-muted">
+      © {{year}} · Hecho con Angular · {{ isDark ? 'Dark' : 'Light' }} mode
+    </div>
   </div>
 </footer>

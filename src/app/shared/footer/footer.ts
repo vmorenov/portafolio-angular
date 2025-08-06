@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// src/app/shared/footer/footer.ts
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -8,4 +9,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './footer.html',
   styleUrls: ['./footer.css']
 })
-export class Footer {}
+export class Footer implements OnInit {
+  year = new Date().getFullYear();
+  isDark = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Lee el estado actual del tema en el cliente
+      this.isDark = document.documentElement.classList.contains('dark-theme');
+    }
+  }
+}

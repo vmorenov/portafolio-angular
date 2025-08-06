@@ -1,0 +1,63 @@
+/* Pista horizontal con barra visible y scroll suave manual */
+.clients__track{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 260px);
+  gap: 1rem;
+  overflow-x: auto;           /* mantiene la barra visible */
+  padding-bottom: .25rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Tarjeta */
+.clients__card{
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  background: var(--surface);
+  color: var(--text);
+  text-align: center;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* Hover: sensación de selección */
+.clients__card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(13,110,253,.18);
+  border-color: var(--primary);
+  cursor: pointer;
+}
+
+/* Logos en color (sin gris) */
+.clients__logo{
+  height: 48px;
+  max-width: 140px;
+  margin-bottom: .5rem;
+  filter: none;
+  opacity: 1;
+}
+
+.clients__name{
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+
+.clients__desc{
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+/* En móvil: una tarjeta grande por vista aprox. */
+@media (max-width: 576px){
+  .clients__track{ grid-auto-columns: 85%; }
+}
+/* En tablet: dos tarjetas por vista aprox. */
+@media (min-width: 577px) and (max-width: 768px){
+  .clients__track{ grid-auto-columns: 45%; }
+}

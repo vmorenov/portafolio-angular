@@ -6,9 +6,118 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-   <script src="https://www.google.com/recaptcha/api.js?render=6LekdZorAAAAAGVSzSrZGOeArgm-5AL15GDnnAEJ"></script>
+
+  <!-- reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LekdZorAAAAAGVSzSrZGOeArgm-5AL15GDnnAEJ"></script>
+
+  <!-- Pre-aplicar tema oscuro si corresponde (evita flash) -->
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark') document.documentElement.classList.add('dark-theme');
+    } catch (_) {}
+  </script>
+
+  <!-- ===== Splash inicial (pre-Angular) ===== -->
+  <style>
+    #pre-splash{
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(1200px 600px at 60% 40%, rgba(0,0,0,.35), rgba(0,0,0,.65));
+      opacity: 1;
+      transition: opacity .7s ease;
+    }
+    #pre-splash.fade-out{ opacity: 0; pointer-events: none; }
+
+    #pre-splash .ps-card{
+      background: var(--surface, #ffffff);
+      color: var(--text, #1f2937);
+      border: 1px solid var(--border, #e5e7eb);
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      width: min(560px, 92vw);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    #pre-splash .ps-sub{ margin: 0 0 .5rem 0; color: var(--muted, #6b7280); }
+
+    #pre-splash .ps-track{
+      position: relative;
+      margin: .75rem auto 0;
+      height: 26px; width: 100%;
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,0)) 0 0/100% 100%,
+        var(--surface, #ffffff);
+      border: 1px solid var(--border, #e5e7eb);
+      overflow: hidden;
+    }
+    #pre-splash .ps-ball{
+      --ball: 18px;
+      position: absolute; top: 3px; left: 0;
+      width: var(--ball); height: var(--ball);
+      animation: ps-move 4.2s ease-out forwards;
+    }
+    #pre-splash .ps-dot{
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--primary, #0d6efd);
+      box-shadow: 0 0 0 4px rgba(13,110,253,.15);
+      animation: ps-bounce .6s ease-in-out infinite alternate;
+    }
+    @keyframes ps-move{
+      from{ left: 0; }
+      to  { left: calc(100% - var(--ball) - 3px); }
+    }
+    @keyframes ps-bounce{
+      from{ transform: translateY(-2px); }
+      to  { transform: translateY(2px); }
+    }
+    /* Bloquea scroll durante el splash */
+    html.pre-splash-lock, html.pre-splash-lock body{ overflow: hidden; }
+  </style>
 </head>
+
 <body>
+  <!-- Splash pre-Angular -->
+  <div id="pre-splash" role="status" aria-live="polite">
+    <div class="ps-card">
+      <h1 class="mb-3">Bienvenido</h1>
+      <p class="ps-sub">Cargando tu portafolio…</p>
+      <div class="ps-track" aria-hidden="true">
+        <div class="ps-ball"><div class="ps-dot"></div></div>
+      </div>
+    </div>
+  </div>
+
   <app-root></app-root>
+
+  <!-- Control del splash (a prueba de fallos) -->
+  <script>
+    (function(){
+      // Bloquea scroll mientras está el splash
+      document.documentElement.classList.add('pre-splash-lock');
+
+      var el = document.getElementById('pre-splash');
+      if (!el) return;
+
+      var runMs  = 4200; // debe coincidir con ps-move (4.2s)
+      var fadeMs = 700;  // debe coincidir con transition de #pre-splash (.7s)
+
+      // Inicia el fade-out cuando termina el recorrido
+      setTimeout(function(){
+        el.classList.add('fade-out');
+        document.documentElement.classList.remove('pre-splash-lock');
+
+        // Remueve del DOM al terminar el fade (con margen)
+        setTimeout(function(){
+          if (el && el.parentNode) el.parentNode.removeChild(el);
+        }, fadeMs + 50);
+      }, runMs);
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,18 @@
+<div class="clients app-surface p-3 p-md-4">
+  <h3 class="m-0 mb-3 text-center text-md-start">Clientes</h3>
+
+  <div
+    #track
+    class="clients__track"
+    (mouseenter)="onEnter()"
+    (mouseleave)="onLeave()"
+  >
+    <div class="clients__item" *ngFor="let c of clients">
+      <article class="clients__card">
+        <img [src]="c.logo" [alt]="c.name" class="clients__logo" />
+        <div class="clients__name">{{ c.name }}</div>
+        <div class="clients__desc">{{ c.description }}</div>
+      </article>
+    </div>
+  </div>
+</div>
