@@ -1,18 +1,35 @@
-<div class="clients app-surface p-3 p-md-4">
-  <h3 class="m-0 mb-3 text-center text-md-start">Clientes</h3>
+<section class="container section-band clients-wrap">
+  <div class="section-chip">Clientes</div>
 
-  <div
-    #track
-    class="clients__track"
-    (mouseenter)="onEnter()"
-    (mouseleave)="onLeave()"
-  >
-    <div class="clients__item" *ngFor="let c of clients">
-      <article class="clients__card">
-        <img [src]="c.logo" [alt]="c.name" class="clients__logo" />
-        <div class="clients__name">{{ c.name }}</div>
-        <div class="clients__desc">{{ c.description }}</div>
-      </article>
-    </div>
+  <!-- scroller accesible (mouse, touch, teclado) -->
+  <div class="clients-scroller no-scrollbar" #scroller>
+    <a class="client-card"
+       *ngFor="let c of clients"
+       [routerLink]="['/clients', c.slug]"
+       [attr.aria-label]="'Ver historial con ' + c.name">
+
+      <div class="client-ring">
+        <img [src]="c.logo" [alt]="c.name" loading="lazy">
+      </div>
+
+      <div class="client-meta">
+        <h3 class="client-name">{{ c.name }}</h3>
+        <p class="client-summary">{{ c.summary }}</p>
+        <div class="tags" *ngIf="c.tags?.length">
+          <span class="pill" *ngFor="let t of c.tags">{{ t }}</span>
+        </div>
+      </div>
+
+      <i class="bi bi-arrow-right-short arrow"></i>
+    </a>
   </div>
-</div>
+
+  <div class="scroller-controls">
+    <button class="btn-nav" (click)="scroll(scroller, -1)" aria-label="Anterior">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <button class="btn-nav" (click)="scroll(scroller, +1)" aria-label="Siguiente">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</section>

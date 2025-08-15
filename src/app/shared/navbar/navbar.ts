@@ -1,45 +1,104 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+
+type Section = 'about' | 'projects' | 'experience' | 'clients' | 'contact';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  styleUrls: ['./navbar.css'],
 })
-export class Navbar implements OnInit {
-  navLinks = [
-    { fragment: 'about', label: 'Acerca de mí' },
-    { fragment: 'projects', label: 'Proyectos' },
-    { fragment: 'contact', label: 'Contacto' }
-  ];
+export class Navbar implements OnInit, OnDestroy {
+  active: Section = 'about';
+  lang: 'es' | 'en' = 'es';
+  scrolled = false;
+  menuOpen = false;
 
+  /** true cuando el documento está en dark mode */
   isDark = false;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  private isBrowser: boolean;
+  private onScrollHandler?: () => void;
+  private onResizeHandler?: () => void;
+
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      const savedLang = localStorage.getItem('lang') as 'es' | 'en' | null;
+      if (savedLang) this.lang = savedLang;
+    }
+  }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const saved = localStorage.getItem('theme');
-      const prefers = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
-      this.isDark = saved ? saved === 'dark' : prefers;
-      this.applyTheme();
-    }
+    if (!this.isBrowser) return;
+
+    // Estado inicial del tema
+    const pref = localStorage.getItem('theme');
+    this.isDark = pref === 'dark';
+    document.documentElement.classList.toggle('dark-theme', this.isDark);
+
+    // Navbar cambia a "scrolled" al bajar
+    this.onScrollHandler = () => { this.scrolled = window.scrollY > 24; };
+    this.onScrollHandler();
+    window.addEventListener('scroll', this.onScrollHandler, { passive: true });
+
+    // Cerrar drawer si pasa a desktop
+    this.onResizeHandler = () => {
+      if (window.innerWidth > 992 && this.menuOpen) this.closeMenu();
+    };
+    window.addEventListener('resize', this.onResizeHandler);
   }
 
+  ngOnDestroy() {
+    if (!this.isBrowser) return;
+    if (this.onScrollHandler) window.removeEventListener('scroll', this.onScrollHandler);
+    if (this.onResizeHandler) window.removeEventListener('resize', this.onResizeHandler);
+  }
+
+  /* Ir a la raíz del proyecto + scroll al tope */
+  goHome() {
+    if (!this.isBrowser) return;
+    history.replaceState(null, '', location.pathname + location.search); // quita #hash
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.active = 'about';
+    this.closeMenu();
+  }
+
+  go(section: Section) {
+    this.active = section;
+    if (!this.isBrowser) return;
+    const el = document.getElementById(section);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', `#${section}`);
+    this.closeMenu();
+  }
+
+  toggleMenu() {
+    if (!this.isBrowser) return;
+    this.menuOpen = !this.menuOpen;
+    document.body.classList.toggle('no-scroll', this.menuOpen);
+  }
+
+  closeMenu() {
+    if (!this.isBrowser) return;
+    if (!this.menuOpen) return;
+    this.menuOpen = false;
+    document.body.classList.remove('no-scroll');
+  }
+
+  /** Cambia el tema y sincroniza el icono 🌙/☀️ */
   toggleTheme() {
+    if (!this.isBrowser) return;
     this.isDark = !this.isDark;
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
-      this.applyTheme();
-    }
+    document.documentElement.classList.toggle('dark-theme', this.isDark);
+    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
   }
 
-  private applyTheme() {
-    if (isPlatformBrowser(this.platformId)) {
-      const root = document.documentElement;
-      if (this.isDark) root.classList.add('dark-theme');
-      else root.classList.remove('dark-theme');
-    }
+  setLang(language: 'es' | 'en') {
+    this.lang = language;
+    if (this.isBrowser) localStorage.setItem('lang', language);
   }
 }

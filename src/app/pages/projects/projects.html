@@ -1,15 +1,35 @@
-<div class="app-surface p-3 p-md-4 mt-3">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-6 col-md-4 mb-4" *ngFor="let project of projectList">
-      <a [href]="project.link" target="_blank" class="text-decoration-none" rel="noopener">
-        <div class="card h-100 shadow-sm">
-          <img [src]="project.image" class="card-img-top p-4" alt="{{project.title}}" style="height:150px;object-fit:contain;">
-          <div class="card-body">
-            <h5 class="card-title">{{project.title}}</h5>
-            <p class="card-text text-muted">{{project.description}}</p>
-          </div>
+<section class="projects-wrap container">
+  <div class="section-chip">Proyectos</div>
+
+  <div class="projects-grid">
+    <a class="project-card"
+       *ngFor="let p of projectList"
+       [href]="p.link"
+       target="_blank"
+       rel="noopener"
+       [attr.aria-label]="'Abrir ' + p.title + ' en una nueva pestaña'">
+
+      <div class="card-top">
+        <div class="logo-ring">
+          <img [src]="p.image" [alt]="p.title" loading="lazy">
         </div>
-      </a>
-    </div>
+
+        <!-- etiqueta opcional (e.g. 'Web', 'API', 'Demo') -->
+        <span class="project-badge" *ngIf="p.tag">{{ p.tag }}</span>
+      </div>
+
+      <h3 class="project-title">{{ p.title }}</h3>
+
+      <p class="project-desc">{{ p.description }}</p>
+
+      <div class="project-tech" *ngIf="p.tech?.length">
+        <span class="pill" *ngFor="let t of p.tech">{{ t }}</span>
+      </div>
+
+      <div class="card-foot">
+        <span class="foot-text">Ver proyecto</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </div>
+    </a>
   </div>
-</div>
+</section>

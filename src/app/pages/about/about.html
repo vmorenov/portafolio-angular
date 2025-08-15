@@ -1,71 +1,20 @@
-<!-- HERO con carrusel de fondo + contenido encima -->
-<section class="hero">
-  <!-- Carrusel de fondo -->
-  <div id="aboutCarousel" class="carousel slide hero__bg" data-bs-ride="carousel" data-bs-interval="20000">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/images/banner/teclado.jpg" alt="Banner 1">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/images/banner/office.jpg" alt="Banner 3">
-      </div>
-    </div>
-  </div>
-
-  <!-- Capa de oscurecimiento -->
-  <div class="hero__overlay"></div>
-
-  <!-- Contenido encima del banner -->
-  <div class="container hero__content">
-    <div class="row align-items-center g-4">
-      <div class="col-12 col-md-4 text-center">
-        <img src="assets/profile.png" alt="Mi Foto" class="img-fluid rounded-circle shadow profile-img">
-      </div>
-      <div class="col-12 col-md-8">
-        <h2 class="text-white mb-3">Acerca de mí</h2>
-        <div class="hero__text">
-          <p>
-            Arquitecto de Soluciones Digitales con más de 10 años de experiencia liderando proyectos en tecnologías de la información,
-            con un fuerte enfoque en el desarrollo de soluciones en la nube, integración de sistemas y optimización de procesos digitales.
-            He trabajado en la implementación de soluciones Cloud con IBM Cloud, liderado equipos ágiles, gestionado proyectos complejos
-            y logrado entregas exitosas en clientes de alto perfil como BNP Paribas Cardif y Farmacias Cruz Verde.
-          </p>
-          <p>
-            Me especializo en el diseño e implementación de arquitecturas robustas y escalables para entornos empresariales,
-            con un enfoque en la eficiencia, la seguridad y la calidad del servicio.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- TIMELINE (sección aparte, sin fondo del banner) -->
-<section class="container timeline-wrap">
-  <hr class="my-5">
-  <div class="timeline app-surface rounded shadow-sm p-4">
-    <div class="timeline-item mb-4">
-      <h5>Architect of Digital Solutions - Indra (Dic 2024 - May 2025)</h5>
-      <p>
-        Liderazgo de soluciones en IBM Cloud para BNP Paribas Cardif. Certificado como IBM Certified Cloud Developer v6.
-        Diseño de arquitecturas escalables, integración de sistemas y optimización de procesos en entornos cloud.
-      </p>
-    </div>
+<section class="container experience-wrap">
+  <div class="section-chip">Experiencia</div>
 
-    <div class="timeline-item mb-4">
-      <h5>Technical Lead - Indra (May 2023 - Dic 2024)</h5>
-      <p>
-        Gestión de equipos ágiles, desarrollo backend Java, arquitecturas cloud en IBM Cloud, automatización de pipelines con Jenkins,
-        soluciones sobre Oracle, Angular y entornos híbridos en BNP Paribas Cardif.
-      </p>
-    </div>
+  <div class="experience-container">
+    <div class="experience-item" *ngFor="let exp of experienceList">
+      <div class="experience-content">
+        <h3 class="company">{{ exp.company }}</h3>
+        <h4 class="role">
+          {{ exp.role }} • <span class="period">{{ exp.period }}</span>
+        </h4>
+        <p class="description">{{ exp.description }}</p>
+      </div>
 
-    <div class="timeline-item mb-4">
-      <h5>IT Project Manager - Stefanini (Jun 2021 - Abr 2023)</h5>
-      <p>
-        Liderazgo técnico en proyectos estratégicos para BNP Paribas Cardif con tecnologías como Angular, IBM Cloud, Oracle DB,
-        asegurando entregas de alto impacto. Coordinación de equipos y soluciones end-to-end.
-      </p>
+      <div class="experience-logo" *ngIf="exp.image">
+        <img [src]="exp.image" [alt]="exp.company" />
+      </div>
     </div>
   </div>
 </section>

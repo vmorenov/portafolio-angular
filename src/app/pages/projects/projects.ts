@@ -10,47 +10,74 @@ import { CommonModule } from '@angular/common';
 })
 export class Projects {
   projectList = [
-    {
-      title: 'Gateway Spring Boot',
-      description: 'Proyecto de Java Spring Boot de gateway',
-      image: 'assets/icons/springboot.svg',
-      link: 'https://github.com/vmorenov/gateway-springboot'
-    },
-    {
-      title: 'CRUD Usuarios',
-      description: 'CRUD de administración de usuarios',
-      image: 'assets/icons/springboot.svg',
-      link: 'https://github.com/vmorenov/crud-usuarios'
-    },
-    {
-      title: 'Modelo Clínica',
-      description: 'Proyecto Oracle PLSQL del modelo de clínica y farmacia',
-      image: 'assets/icons/oracle.svg',
-      link: 'https://github.com/vmorenov/modelo-clinica'
-    },
-    {
-      title: 'Transporte Privado',
-      description: 'Página de transporte privado hecha en Angular',
-      image: 'assets/icons/angular.svg',
-      link: 'https://github.com/vmorenov/transporte-privado'
-    },
-    {
-      title: 'Portafolio Angular',
-      description: 'Mi portafolio personal hecho en Angular',
-      image: 'assets/icons/angular.svg',
-      link: 'https://github.com/vmorenov/portafolio-angular'
-    },
-    {
-      title: 'Backend for Frontend',
-      description: 'Proyecto BFF en Spring Boot',
-      image: 'assets/icons/springboot.svg',
-      link: 'https://github.com/vmorenov/bff-backend'
-    },
-    {
-      title: 'Simulador PKCE',
-      description: 'Simulador de API Manager con PKCE para SPA',
-      image: 'assets/icons/springboot.svg',
-      link: 'https://github.com/vmorenov/simulador-pkce'
-    }
-  ];
+  {
+    title: 'Gateway Spring Boot',
+    description: 'Proyecto de gateway basado en Spring Cloud para orquestación de servicios.',
+    image: 'assets/icons/springboot.svg',
+    link: 'https://github.com/tunick/gateway',
+    tag: 'API',
+    tech: ['Spring Boot', 'OpenAPI']
+  },
+  {
+    title: 'Portafolio Angular',
+    description: 'Sitio personal con SSR, diseño pastel y dark mode.',
+    image: 'assets/icons/angular.svg',
+    link: 'https://tu-demo.netlify.app',
+    tag: 'Web',
+    tech: ['Angular', 'Bootstrap']
+  },
+  {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  },
+   {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  }
+  , {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  }, {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  }, {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  }, {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  }, {
+    title: 'Modelo Clínica',
+    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
+    image: 'assets/icons/oracle.svg',
+    link: 'https://github.com/tunick/clinica',
+    tag: 'DB',
+    tech: ['PL/SQL', 'Oracle']
+  }
+];
+
 }

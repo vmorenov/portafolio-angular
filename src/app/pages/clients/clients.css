@@ -1,63 +1,71 @@
-/* Pista horizontal con barra visible y scroll suave manual */
-.clients__track{
+.clients-wrap { padding-top: .5rem; }
+
+.clients-scroller{
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(220px, 260px);
+  grid-auto-columns: minmax(280px, 1fr);
   gap: 1rem;
-  overflow-x: auto;           /* mantiene la barra visible */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
   padding-bottom: .25rem;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
 }
+.no-scrollbar::-webkit-scrollbar{ display:none; }
+.no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
 
-/* Tarjeta */
-.clients__card{
-  height: 180px;
-  display: flex;
-  flex-direction: column;
+.client-card{
+  scroll-snap-align: start;
+  display:grid;
+  grid-template-columns: auto 1fr auto;
+  gap: .85rem;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: .5rem;
+  padding: .9rem 1rem;
+  border-radius: 16px;
   background: var(--surface);
   color: var(--text);
-  text-align: center;
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+}
+.client-card:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
 }
 
-/* Hover: sensación de selección */
-.clients__card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(13,110,253,.18);
-  border-color: var(--primary);
-  cursor: pointer;
+.client-ring{
+  width: 56px; height: 56px; border-radius: 9999px;
+  display: grid; place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 10px 18px rgba(2,6,23,.06);
+}
+.client-ring img{ width: 70%; height: 70%; object-fit: contain; }
+
+.client-meta{ min-width: 0; }
+.client-name{ margin: 0; font-size: 1rem; color: var(--text); }
+.client-summary{ margin: 0; color: var(--text); opacity: .92; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.tags{ display:flex; flex-wrap: wrap; gap: .35rem; margin-top: .25rem; }
+.pill{
+  font-size: .75rem; font-weight: 700;
+  padding: .2rem .55rem; border-radius: 999px;
+  background: var(--primary-100);
+  border: 1px solid var(--primary-200);
+  color: var(--primary-700);
 }
 
-/* Logos en color (sin gris) */
-.clients__logo{
-  height: 48px;
-  max-width: 140px;
-  margin-bottom: .5rem;
-  filter: none;
-  opacity: 1;
-}
+.arrow{ font-size: 1.25rem; opacity: .7; }
+.client-card:hover .arrow{ transform: translateX(2px); }
 
-.clients__name{
-  font-weight: 600;
-  margin-bottom: .25rem;
+.scroller-controls{
+  display:flex; gap:.5rem; justify-content:flex-end; margin-top:.5rem;
 }
-
-.clients__desc{
-  font-size: .875rem;
-  color: var(--muted);
+.btn-nav{
+  width: 36px; height: 36px; border-radius: 8px;
+  display:grid; place-items:center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
 }
-
-/* En móvil: una tarjeta grande por vista aprox. */
-@media (max-width: 576px){
-  .clients__track{ grid-auto-columns: 85%; }
-}
-/* En tablet: dos tarjetas por vista aprox. */
-@media (min-width: 577px) and (max-width: 768px){
-  .clients__track{ grid-auto-columns: 45%; }
-}
+.btn-nav:hover{ border-color: color-mix(in srgb, var(--primary) 30%, var(--border)); }

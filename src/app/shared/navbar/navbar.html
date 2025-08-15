@@ -1,22 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-dark app-navbar fixed-top px-3 shadow">
-  <a class="navbar-brand" href="#about">Mi Portafolio</a>
+<nav class="app-navbar" [class.scrolled]="scrolled">
+  <div class="nav-inner container">
+    <!-- Marca / ir al inicio -->
+    <a class="brand navbar-brand" (click)="goHome()">Víctor Moreno</a>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <!-- Botón hamburguesa (móvil) -->
+    <button class="hamburger" type="button" aria-label="Abrir menú" [attr.aria-expanded]="menuOpen"
+      aria-controls="nav-drawer" (click)="toggleMenu()">
+      <span class="burger" aria-hidden="true">☰</span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto align-items-lg-center">
-      <li class="nav-item" *ngFor="let link of navLinks">
-        <a class="nav-link px-3" [href]="'#' + link.fragment">{{ link.label }}</a>
-      </li>
-      <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-        <button class="theme-toggle d-flex align-items-center gap-2" (click)="toggleTheme()">
-          <i class="bi" [ngClass]="isDark ? 'bi-sun' : 'bi-moon'"></i>
-          <span class="d-none d-sm-inline">{{ isDark ? 'Light' : 'Dark' }} mode</span>
+    <!-- Menú (drawer en móvil) -->
+    <ul class="nav-links" [class.open]="menuOpen" id="nav-drawer" (click)="closeMenu()">
+      <li><a class="nav-link" (click)="go('about')" [class.active]="active==='about'">Inicio</a></li>
+      <li><a class="nav-link" (click)="go('projects')" [class.active]="active==='projects'">Proyectos</a></li>
+      <li><a class="nav-link" (click)="go('experience')" [class.active]="active==='experience'">Experiencia</a></li>
+      <li><a class="nav-link" (click)="go('clients')" [class.active]="active==='clients'">Clientes</a></li>
+      <li><a class="nav-link" (click)="go('contact')" [class.active]="active==='contact'">Contacto</a></li>
+
+      <!-- Acciones en móvil -->
+      <li class="mobile-actions">
+        <button class="theme-toggle" (click)="toggleTheme()"
+          [attr.aria-label]="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'">
+          <span aria-hidden="true">{{ isDark ? '☀️' : '🌙' }}</span>
         </button>
+        <div class="lang-switch">
+          <button [class.active]="lang==='es'" (click)="setLang('es')">ES</button>
+          <button [class.active]="lang==='en'" (click)="setLang('en')">EN</button>
+        </div>
       </li>
     </ul>
+
+    <div class="nav-actions desktop-only">
+      <button class="theme-toggle" (click)="toggleTheme()"
+        [attr.aria-label]="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'">
+        <span aria-hidden="true">{{ isDark ? '☀️' : '🌙' }}</span>
+      </button>
+      <div class="lang-switch">
+        <button [class.active]="lang==='es'" (click)="setLang('es')">ES</button>
+        <button [class.active]="lang==='en'" (click)="setLang('en')">EN</button>
+      </div>
+    </div>
   </div>
 </nav>
