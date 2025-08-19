@@ -1,205 +1,244 @@
-/* =========================
-   Tema (Light / Dark)
-   ========================= */
+/* =========================================================
+   Global Theme — "JAMM" palette + tokens
+   ========================================================= */
+
+/* Tipografías (puedes mover a index.html si prefieres <link>) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
+
+/* Reset base + transiciones suaves */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+html, body, .card, .app-surface, .app-navbar, .app-footer,
+section, app-hero, .hero, #hero {
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    opacity .25s ease;
+}
+
+/* ===== Tipografía ===== */
 :root{
-  /* base */
-  --bg:         #EFF5FF;     /* azul pastel muy claro */
-  --surface:    #FFFFFF;     /* tarjetas/modales */
-  --text:       #0F172A;     /* azul-gris muy oscuro */
-  --muted:      #5B6B82;     /* texto secundario */
-  --border:     #D9E2F2;     /* borde suave pastel */
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  --font-display: "Outfit", "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-weight-heading: 700;
+  --font-weight-strong: 700;
+  --font-weight-text: 500;
+}
 
-  /* primarios (azules pastel) */
-  --primary:     #3B82F6;    /* acciones/links */
-  --primary-100: #E6F0FF;    /* fondos sutiles */
-  --primary-200: #CFE2FF;    /* chips/pills */
-  --primary-700: #1E40AF;    /* hover/active */
+/* ===== Dimensiones / radios / sombras ===== */
+:root{
+  --container-max: 1120px;
+  --navbar-h: 64px;
 
-  /* navegación / footer */
-  --nav-bg:      #0B1220;    /* navy profundo cuando scrolleas */
-  --nav-text:    #E7EEFF;
-  --footer-bg:   #0B1220;
-  --footer-text: #BFD0F6;
-
-  /* hero blob (fondo detrás de la foto)  */
-  --hero-blob:   #0D5659;
-  --hero-ring:   rgba(2,6,23,.06);
-
-  /* navbar */
-  --navbar-h:    64px;
+  /* radios */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 9999px;
 
   /* sombras */
-  --shadow-sm:   0 1px 2px rgba(2, 6, 23, .06);
-  --shadow-lg:   0 16px 40px rgba(2, 6, 23, .14);
+  --shadow-sm: 0 2px 8px rgba(2, 6, 23, .10);
+  --shadow-md: 0 6px 16px rgba(2, 6, 23, .14);
+  --shadow-lg: 0 14px 36px rgba(2, 6, 23, .22);
 }
 
+/* ===== Paleta LIGHT (pastel azul armónica con dark) ===== */
+:root{
+  /* base */
+  --bg:        #EAF1FF;    /* fondo global suave */
+  --surface:   #FFFFFF;    /* tarjetas */
+  --text:      #0E1628;    /* texto principal (azul gris oscuro) */
+  --muted:     #5C6B85;    /* texto secundario */
+  --border:    #D6E1F7;    /* borde pastel */
+
+  /* primarios (acento azul) */
+  --primary:      #5C8CFF; /* azul medio (links, botones) */
+  --primary-700:  #2344B1; /* hover intenso */
+  --primary-100:  #E7EFFF; /* fondos sutiles */
+  --primary-200:  #CFDDFF; /* chips/pills */
+
+  /* acento cian (ligero “neón” de la referencia) */
+  --accent:    #67E8F9;
+  --accent-700:#22D3EE;
+
+  /* navegación / footer */
+  --nav-bg:    #0B1220;    /* cuando scrollea se solidifica */
+  --nav-text:  #E7EEFF;
+  --footer-bg: #0B1220;
+  --footer-text:#AFC4F3;
+
+  /* blob del hero */
+  --hero-blob: #103646;
+  --hero-ring: rgba(2,6,23,.06);
+}
+
+/* ===== Paleta DARK (inspirada en el sitio de referencia) ===== */
 .dark-theme{
-  --bg:         #0C1424;     /* navy grisáceo */
-  --surface:    #0F1B2D;     /* tarjetas */
-  --text:       #EAF2FF;     /* texto principal */
-  --muted:      #B7C6DC;     /* texto secundario pastel */
-  --border:     #21324B;
+  --bg:        #0B1220;    /* navy profundo */
+  --surface:   #0F172A;    /* paneles/oscuridad elevada */
+  --text:      #E6EEFF;    /* texto claro */
+  --muted:     #A3B1CC;    /* texto secundario */
+  --border:    #1F2A44;    /* borde tenue */
 
-  --primary:     #8AB9FF;    /* azul pastel brillante */
-  --primary-100: #0F2238;
-  --primary-200: #183251;
-  --primary-700: #A7CBFF;
+  --primary:      #8AB9FF; /* azul pastel brillante */
+  --primary-700:  #A7CBFF; /* hover claro */
+  --primary-100:  #10223A; /* fondos suaves en dark */
+  --primary-200:  #163155; /* chips/pills en dark */
 
-  --nav-bg:      #0B1220;
-  --nav-text:    #E7EEFF;
-  --footer-bg:   #0B1220;
-  --footer-text: #A8C0EA;
+  --accent:    #67E8F9;    /* cian brillante */
+  --accent-700:#22D3EE;
 
-  --hero-blob:   #103646;
-  --hero-ring:   rgba(255,255,255,.08);
+  --nav-bg:    #0B1220;
+  --nav-text:  #E7EEFF;
+  --footer-bg: #0B1220;
+  --footer-text:#A8C0EA;
 
-  --shadow-sm:   0 1px 2px rgba(0,0,0,.45);
-  --shadow-lg:   0 18px 48px rgba(0,0,0,.55);
+  --hero-blob: #0F2C3C;
+  --hero-ring: rgba(255,255,255,.08);
+
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.42);
+  --shadow-md: 0 10px 24px rgba(0,0,0,.50);
+  --shadow-lg: 0 18px 48px rgba(0,0,0,.58);
 }
 
-/* Transiciones suaves entre temas/superficies */
-html, body, .card, .app-surface, .timeline, .app-navbar, .app-footer,
-app-hero, .hero, #hero, .hero * {
-  transition: background-color .20s ease, color .20s ease, border-color .20s ease, box-shadow .20s ease;
-}
-
-/* Respeta reducción de movimiento */
-@media (prefers-reduced-motion: reduce){
-  * { transition: none !important; }
-}
-
-/* =========================
-   Base
-   ========================= */
-html { scroll-behavior: smooth; }
-html, body { margin: 0; }
-
+/* ===== Base ===== */
 body{
   background: var(--bg);
   color: var(--text);
-  /* navbar es fixed → compensamos su altura */
-  padding-top: var(--navbar-h);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-text);
+  line-height: 1.45;
+  padding-top: var(--navbar-h); /* navbar fixed compensation */
 }
 
-/* Ancho máximo uniforme del contenido principal */
-main.container{ max-width: 1100px; }
+h1,h2,h3,h4,h5,h6{
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-heading);
+  margin: 0 0 .5rem;
+  color: var(--text);
+}
 
-/* Separación entre secciones y offset para anchors (#id) */
+/* Contenedor global uniforme */
+main.container{ max-width: var(--container-max); }
+
+/* Offset para anclas (#id) y separación vertical */
 section { scroll-margin-top: calc(var(--navbar-h) + 8px); }
 section + section { margin-top: 2.5rem; }
 
-/* =========================
-   HERO: asegura contraste en ambos temas
-   ========================= */
-/* Elige el selector que tengas (sirven todos) */
-app-hero, .hero, #hero{
-  display: block;
-  background: var(--bg);  /* <- clave: ya no es color fijo */
-  color: var(--text);
-}
-
-/* Títulos y acento */
-app-hero h1, .hero h1, #hero h1{ color: var(--text); }
-app-hero h1 .accent, .hero h1 .accent, #hero h1 .accent{ color: var(--primary); }
-
-/* Párrafos del hero */
-app-hero p, .hero p, #hero p{
-  color: var(--text);
-  opacity: .92;
-}
-
-/* Blob (círculo/forma detrás de la foto) si lo usas con esa clase */
-.hero-blob{
-  background: var(--hero-blob);
-  border-radius: 50%;
-  box-shadow: 0 0 0 10px var(--hero-ring);
-}
-
-/* Botón primario (Bootstrap override suave) */
-.btn-primary,
-button.btn-primary,
-a.btn-primary{
-  background-color: var(--primary) !important;
-  border-color: var(--primary) !important;
-  color: #fff !important;
-}
-.btn-primary:hover{
-  filter: brightness(.95);
-}
-
-/* Pills de tecnologías (si no usas Bootstrap badges) */
-.tech-pill{
-  background: var(--primary-100);
-  border: 1px solid var(--primary-200);
-  color: var(--text);
-  border-radius: 999px;
-  padding: .35rem .6rem;
-  font-weight: 600;
-}
-
-/* =========================
-   Superficies / Cards
-   ========================= */
+/* ===== Superficies / Cards ===== */
 .app-surface,
 .card,
 .timeline{
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: .5rem;
+  border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
 }
 
-/* Chips reutilizables */
-.chip, .section-chip{
-  background: var(--primary-100);
-  border: 1px solid var(--primary-200);
-  color: var(--primary-700);
-  padding: .25rem .75rem;
-  border-radius: 999px;
-  font-size: .875rem;
-}
-
-/* Hover tarjetas genéricas */
-.card:hover, .experience-item:hover{
+/* Hover genérico (cards) */
+.card:hover, .experience-item:hover, .project-card:hover, .client-card:hover{
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
 }
 
-/* =========================
-   Navbar (transparente arriba → sólido al hacer scroll)
-   ========================= */
-.app-navbar{
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--navbar-h);
-  z-index: 1000;
-  background: transparent;              /* integra con el hero */
-  border-bottom: 1px solid transparent; /* sin línea al inicio */
-  backdrop-filter: none;
-  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+/* Chips */
+.chip, .section-chip{
+  display: inline-block;
+  padding: .28rem .7rem;
+  border-radius: var(--radius-pill);
+  background: var(--primary-100);
+  border: 1px solid var(--primary-200);
+  color: var(--primary-700);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.dark-theme .chip, .dark-theme .section-chip{
+  background: var(--primary-200);
+  color: var(--primary);
 }
 
-/* Colores al inicio (sin scroll) — heredan del tema */
-.app-navbar:not(.scrolled) .navbar-brand,
-.app-navbar:not(.scrolled) .nav-link,
-.app-navbar:not(.scrolled) .hamburger{ color: var(--text); }
+/* ===== Navbar sticky con blur (transparente → sólido en scroll) ===== */
+.app-navbar{
+  position: fixed; inset: 0 0 auto 0; height: var(--navbar-h);
+  z-index: 1000;
+  display: grid; align-items: center;
+  background: transparent;                     /* arriba: transparente */
+  border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+}
+.app-navbar .navbar-brand,
+.app-navbar .nav-link,
+.app-navbar .hamburger{ color: var(--text); }
+.dark-theme .app-navbar .navbar-brand,
+.dark-theme .app-navbar .nav-link,
+.dark-theme .app-navbar .hamburger{ color: var(--nav-text); }
 
-/* En dark arriba (sin scroll) deben ser claros */
-.dark-theme .app-navbar:not(.scrolled) .navbar-brand,
-.dark-theme .app-navbar:not(.scrolled) .nav-link,
-.dark-theme .app-navbar:not(.scrolled) .hamburger{ color: var(--nav-text); }
-
-/* Estado scrolleado: navy y texto claro */
+/* estado scrolleado */
 .app-navbar.scrolled{
-  background: var(--nav-bg);
-  border-bottom: 1px solid color-mix(in srgb, var(--nav-text) 12%, transparent);
-  backdrop-filter: saturate(160%) blur(8px);
+  background: color-mix(in srgb, var(--nav-bg) 86%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--nav-text) 14%, transparent);
+  backdrop-filter: blur(10px) saturate(160%);
 }
 .app-navbar.scrolled .navbar-brand,
 .app-navbar.scrolled .nav-link,
 .app-navbar.scrolled .hamburger{ color: var(--nav-text); }
+
+/* enlaces del nav */
+.app-navbar .nav-link{
+  text-decoration: none;
+  font-weight: 600;
+  padding: .25rem .5rem;
+  border-radius: 8px;
+}
+.app-navbar .nav-link:hover{ color: var(--primary); }
+.app-navbar .nav-link.active{
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary-100) 80%, transparent);
+  border: 1px solid var(--primary-200);
+}
+
+/* botón de tema */
+.theme-toggle{
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  background: transparent;
+  color: inherit;
+  border-radius: .5rem;
+  padding: .4rem .6rem;
+}
+.theme-toggle:hover{ opacity:.85; }
+
+/* ===== Hero coherente (usa variables del tema) ===== */
+app-hero, .hero, #hero{
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  position: relative; isolation: isolate;
+}
+app-hero h1, .hero h1, #hero h1{ color: var(--text) !important; }
+app-hero .accent, .hero .accent, #hero .accent{ color: var(--primary) !important; }
+app-hero p, .hero p, #hero p{ color: var(--text) !important; opacity: .94 !important; }
+.hero-blob{
+  background: var(--hero-blob) !important;
+  box-shadow: 0 0 0 10px var(--hero-ring) !important;
+}
+/* neutraliza opacidades accidentales */
+app-hero [class*="opacity-"], .hero [class*="opacity-"], #hero [class*="opacity-"]{ opacity: 1 !important; }
+
+/* ===== Timeline (si lo usas) ===== */
+.timeline{ border-left: 3px solid var(--primary); padding-left: 1.25rem; }
+.timeline-item::before{
+  content:""; width:12px; height:12px; display:inline-block; border-radius:50%;
+  background: var(--primary); position:relative; top:5px; margin-right:.5rem;
+}
+
+/* ===== Secciones / espaciados ===== */
+main.container section { margin-bottom: 2.5rem; }
+section#contact { margin-bottom: 3rem; }
+#contact .container { padding-bottom: 1rem; }
+.app-footer { margin-top: 0; }
 
 /* Footer */
 .app-footer{
@@ -210,77 +249,17 @@ a.btn-primary{
 .app-footer a{ color: var(--footer-text); }
 .app-footer a:hover{ text-decoration: underline; }
 
-/* Botón dark/light (en el navbar) */
-.theme-toggle{
-  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-  background: transparent;
-  color: inherit;
-  border-radius: .5rem;
-  padding: .4rem .6rem;
-}
-.theme-toggle:hover{ opacity:.85; }
-
-/* =========================
-   Timeline
-   ========================= */
-.timeline{ border-left: 3px solid var(--primary); padding-left: 1.25rem; }
-.timeline-item::before{
-  content:""; width:12px; height:12px; display:inline-block; border-radius:50%;
-  background: var(--primary); position:relative; top:5px; margin-right:.5rem;
-}
-
-/* =========================
-   Espaciados extra
-   ========================= */
-main.container section { margin-bottom: 2.5rem; }
-section#contact { margin-bottom: 3rem; }
-#contact .container { padding-bottom: 1rem; }
-.app-footer { margin-top: 0; }
-
-/* Drawer móvil: bloquea scroll del body cuando está abierto */
+/* Drawer móvil (si usas) */
 body.no-scroll { overflow: hidden; }
 
-/* ==========================================================
-   FIX PACK — Hero + Bootstrap tokens alineados al tema
-   Pega este bloque al FINAL de styles.css
-   ========================================================== */
-
-/* 1) Forzar que el HERO siempre tome los colores del tema */
-app-hero, .hero, #hero{
-  background: var(--bg) !important;
-  color: var(--text) !important;
-}
-
-/* Títulos grandes del Hero */
-app-hero h1, .hero h1, #hero h1{
-  color: var(--text) !important;
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-/* Acento del nombre (Víctor) */
-app-hero h1 .accent, .hero h1 .accent, #hero h1 .accent{
-  color: var(--primary) !important;
-}
-
-/* Párrafos / lead del Hero */
-app-hero p, .hero p, #hero p,
-app-hero .lead, .hero .lead, #hero .lead{
-  color: var(--text) !important;
-  opacity: .94; /* suave pero legible en ambos temas */
-}
-
-/* Si usas un "blob" u óvalo detrás de la foto */
-.hero-blob { background: var(--hero-blob) !important; }
-
-/* 2) Bootstrap: alinear tokens a tu paleta (para utilidades como text-body, headings, etc.) */
+/* ===== Utilidades de color alineadas al tema (Bootstrap-safe) ===== */
 :root{
   --bs-body-bg: var(--bg);
   --bs-body-color: var(--text);
   --bs-secondary-color: var(--muted);
   --bs-heading-color: var(--text);
   --bs-link-color: var(--primary);
-  --bs-link-hover-color: color-mix(in srgb, var(--primary) 85%, #000 15%);
+  --bs-link-hover-color: color-mix(in srgb, var(--primary) 90%, #000 10%);
 }
 .dark-theme{
   --bs-body-bg: var(--bg);
@@ -291,228 +270,85 @@ app-hero .lead, .hero .lead, #hero .lead{
   --bs-link-hover-color: color-mix(in srgb, var(--primary) 88%, #fff 12%);
 }
 
-/* 3) Utilidades Bootstrap que rompen contraste → usarlas pero adaptadas al tema */
-.text-dark, .text-black, .text-white-50, .text-black-50{
-  color: var(--text) !important; /* así no se “pierden” en dark */
+/* ===== Hamburger (mobile) alineado a la derecha ===== */
+.hamburger{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  background: transparent; color: inherit;
 }
-.text-muted, .text-secondary{
-  color: var(--muted) !important;
-}
+.hamburger:focus{ outline: 2px solid color-mix(in srgb, var(--primary) 40%, transparent); outline-offset: 2px; }
 
-/* 4) Evitar opacidades accidentales en el Hero (a veces queda opacity-50 por clases) */
-app-hero [class*="opacity-"], .hero [class*="opacity-"], #hero [class*="opacity-"]{
-  opacity: 1 !important;
-}
+/* ===== Micro-ajustes de grids de secciones ===== */
+/* Projects */
+.projects-wrap{ margin-top: clamp(.5rem, 1.5vw, 1rem); margin-bottom: clamp(3rem, 6vw, 4.5rem); }
+.projects-wrap .section-chip{ margin-bottom: clamp(.8rem, 1.2vw, 1.1rem); }
 
-/* 5) Transición elegante extra para el hero */
-app-hero, .hero, #hero,
-app-hero *:where(h1, h2, h3, p, a), 
-.hero *:where(h1, h2, h3, p, a), 
-#hero *:where(h1, h2, h3, p, a){
-  transition: background-color .25s ease, color .25s ease, opacity .25s ease;
-}
+/* Clients */
+.clients-wrap{ padding-top: .5rem; }
 
 
-/* ==========================================================
-   FIX PACK 2 — Hero visible + Experiencia coherente en dark
-   (añádelo al FINAL de styles.css)
-   ========================================================== */
+/* =========================================================
+   SECTION BANDS (fondos pastel por sección, JAMM-like)
+   ========================================================= */
 
-/* ---------- HERO: forzar colores del tema y quitar opacidades accidentales ---------- */
+.section-band{
+  /* tokens internos de la banda */
+  --_bg: var(--bg);
+  --_bd: var(--border);
 
-/* El wrapper del Hero (usa el que tengas: app-hero, .hero o #hero) */
-app-hero, .hero, #hero{
-  background: var(--bg) !important;
-  color: var(--text) !important;
-}
+  background: var(--_bg);
+  border-top: 1px solid color-mix(in srgb, var(--_bd) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--_bd) 60%, transparent);
 
-/* Títulos y acentos SIEMPRE legibles */
-app-hero h1, .hero h1, #hero h1,
-app-hero h2, .hero h2, #hero h2{
-  color: var(--text) !important;
-  opacity: 1 !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-}
-app-hero .accent, .hero .accent, #hero .accent{
-  color: var(--primary) !important;
+  /* respiro vertical */
+  padding-block: clamp(1.25rem, 3.5vw, 2.5rem);
 }
 
-/* Texto del Hero (lead/párrafos) */
-app-hero p, .hero p, #hero p,
-app-hero .lead, .hero .lead, #hero .lead{
-  color: var(--text) !important;
-  opacity: .95 !important;
+/* el contenido sigue controlado por tu .container global */
+.section-band .container{ max-width: var(--container-max); }
+
+/* ---------- Variantes (LIGHT) ---------- */
+.band-sky  { --_bg:#EEF3FF; --_bd:#D8E3FF; }  /* azul pastel */
+.band-cyan { --_bg:#F5FBFF; --_bd:#D8F4FF; }  /* cian pastel */
+.band-iris { --_bg:#F1F4FF; --_bd:#DCE3FF; }  /* índigo/iris suave */
+.band-mint { --_bg:#F2FBF7; --_bd:#D6F3E6; }  /* menta pálido (opcional) */
+.band-pearl{ --_bg:#F7F9FF; --_bd:#E6ECFF; }  /* neutro perlado */
+
+/* ---------- Variantes (DARK) ---------- */
+/* mezclamos con el bg para mantener elegancia y contraste */
+.dark-theme .band-sky  { --_bg: color-mix(in srgb, var(--bg) 86%, #7EA5FF 14%);
+                         --_bd: color-mix(in srgb, var(--border) 70%, #7EA5FF 30%); }
+.dark-theme .band-cyan { --_bg: color-mix(in srgb, var(--bg) 86%, #22D3EE 10%);
+                         --_bd: color-mix(in srgb, var(--border) 70%, #22D3EE 30%); }
+.dark-theme .band-iris { --_bg: color-mix(in srgb, var(--bg) 86%, #8AB9FF 12%);
+                         --_bd: color-mix(in srgb, var(--border) 70%, #8AB9FF 30%); }
+.dark-theme .band-mint { --_bg: color-mix(in srgb, var(--bg) 86%, #34D399 10%);
+                         --_bd: color-mix(in srgb, var(--border) 70%, #34D399 30%); }
+.dark-theme .band-pearl{ --_bg: color-mix(in srgb, var(--bg) 86%, #A7CBFF 12%);
+                         --_bd: color-mix(in srgb, var(--border) 70%, #A7CBFF 30%); }
+
+/* Que las cards destaquen sobre la banda */
+.section-band :where(.card,.experience-item,.client-card,.project-card){
+  background: var(--surface);
+  border-color: var(--border);
 }
 
-/* Si usas una capa decorativa detrás de la foto (óvalo/círculo) */
-.hero-blob{
-  background: var(--hero-blob) !important;
-  box-shadow: 0 0 0 10px var(--hero-ring) !important;
+/* Chips más visibles encima de bandas */
+.section-band .section-chip{
+  background: color-mix(in srgb, var(--primary-100) 70%, var(--_bg) 30%);
+  border-color: color-mix(in srgb, var(--primary-200) 80%, var(--_bd) 20%);
+}
+.dark-theme .section-band .section-chip{
+  background: color-mix(in srgb, var(--primary-200) 70%, var(--_bg) 30%);
+  color: var(--primary);
 }
 
-/* Bloquear utilidades que apagan el Hero */
-app-hero [class*="opacity-"], .hero [class*="opacity-"], #hero [class*="opacity-"]{ opacity: 1 !important; }
-app-hero .text-dark, .hero .text-dark, #hero .text-dark,
-app-hero .text-black-50, .hero .text-black-50, #hero .text-black-50{
-  color: var(--text) !important;
-}
-
-/* Transición suave en hero */
-app-hero, .hero, #hero,
-app-hero h1, .hero h1, #hero h1,
-app-hero p, .hero p, #hero p{ transition: color .25s ease, background-color .25s ease; }
-
-/* ---------- EXPERIENCIA: tarjetas y logo con colores de tema ---------- */
-
-/* Contenedor general (si lo usas) */
-.experience-wrap{ background: var(--bg) !important; }
-
-/* Tarjeta */
-.experience-item{
-  background: var(--surface) !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 16px !important;
-  box-shadow: var(--shadow-sm) !important;
-  padding: 1.1rem 1.25rem;
-}
-.experience-item:hover{
-  box-shadow: var(--shadow-lg) !important;
-  border-color: color-mix(in srgb, var(--primary) 28%, var(--border)) !important;
-}
-
-/* Tipografía dentro de la tarjeta */
-.experience-item .company{
-  font-weight: 800;
-  color: var(--primary-700);
-}
-.dark-theme .experience-item .company{ color: var(--primary); }
-
-.experience-item .role,
-.experience-item .period{
-  font-weight: 700;
-  color: var(--text);
-}
-.experience-item .description{
-  color: var(--text);
-  opacity: .95;
-}
-
-/* Logo circular a la derecha (si existe esa estructura) */
-.experience-logo{
-  width: 120px; height: 120px; border-radius: 9999px;
-  background: color-mix(in srgb, var(--nav-bg) 85%, #0d1a2b 15%) !important;
-  border: 1px solid color-mix(in srgb, var(--nav-text) 18%, transparent) !important;
-  display: grid; place-items: center;
-  position: relative;
-  box-shadow: inset 0 10px 24px rgba(0,0,0,.12);
-}
-.experience-logo img{ max-width: 72%; max-height: 72%; object-fit: contain; }
-
-/* Doblez/halo exterior (opcional) */
-.experience-logo::after{
-  content:""; position:absolute; inset:-10px;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--nav-text) 18%, transparent);
-}
-
-/* Chips de “Experiencia” */
-.section-chip{
-  background: var(--primary-100) !important;
-  border: 1px solid var(--primary-200) !important;
-  color: var(--primary-700) !important;
-}
-.dark-theme .section-chip{
-  background: var(--primary-200) !important;
-  color: var(--primary) !important;
-}
-
-/* ---------- Bootstrap tokens alineados al tema (por si los usa el contenido) ---------- */
-:root{
-  --bs-body-bg: var(--bg);
-  --bs-body-color: var(--text);
-  --bs-heading-color: var(--text);
-  --bs-secondary-color: var(--muted);
-  --bs-link-color: var(--primary);
-}
-.dark-theme{
-  --bs-body-bg: var(--bg);
-  --bs-body-color: var(--text);
-  --bs-heading-color: var(--text);
-  --bs-secondary-color: var(--muted);
-  --bs-link-color: var(--primary);
-}
-/* ==========================================================
-   FIX HERO (legibilidad total en dark/light)
-   PÉGALO AL FINAL DE styles.css
-   ========================================================== */
-
-/* 1) Asegura que Hero usa las variables del tema y está por encima del overlay */
-app-hero, .hero, #hero{
-  position: relative;                 /* para controlar overlays internos */
-  background: var(--bg) !important;
-  color: var(--text) !important;
-  isolation: isolate;                 /* evita mezclas raras con overlays */
-}
-
-/* 2) Títulos y subtítulos SIEMPRE legibles */
-app-hero h1, .hero h1, #hero h1,
-app-hero h2, .hero h2, #hero h2{
-  color: var(--text) !important;
-  opacity: 1 !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  text-shadow: none !important;
-  -webkit-text-fill-color: currentColor !important; /* por si usabas fill transparente */
-}
-
-/* 3) Acentos del título (Víctor) con el primario del tema */
-app-hero .accent, .hero .accent, #hero .accent{ 
-  color: var(--primary) !important; 
-}
-
-/* 4) Lead / párrafos sin desvanecer */
-app-hero p, .hero p, #hero p,
-app-hero .lead, .hero .lead, #hero .lead{
-  color: var(--text) !important;
-  opacity: .96 !important;
-  filter: none !important;
-}
-
-/* 5) Neutraliza utilidades que apagan el texto SOLO dentro del hero */
-app-hero [class*="opacity-"], .hero [class*="opacity-"], #hero [class*="opacity-"]{
-  opacity: 1 !important;
-}
-app-hero .text-dark, .hero .text-dark, #hero .text-dark,
-app-hero .text-black-50, .hero .text-black-50, #hero .text-black-50{
-  color: var(--text) !important;
-}
-
-/* 6) Si tienes una capa de overlay en el hero, hazla más sutil y siempre detrás */
-.hero__overlay{
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background: radial-gradient(ellipse at 60% 40%, rgba(0,0,0,.08), rgba(0,0,0,.12));
-}
-.dark-theme .hero__overlay{
-  background: radial-gradient(ellipse at 60% 40%, rgba(0,0,0,.03), rgba(0,0,0,.06));
-}
-.hero__content{ position: relative; z-index: 1; } /* texto por encima del overlay */
-
-/* 7) Coherencia visual en Experiencia (fondos oscuros en dark) */
-.experience-item{
-  background: var(--surface) !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 16px !important;
-  box-shadow: var(--shadow-sm) !important;
-}
-.experience-item .description{ color: var(--text); opacity: .95; }
-.experience-item .role, .experience-item .period{ color: var(--text); font-weight: 700; }
-
-/* 8) Transición agradable en el hero */
-app-hero, .hero, #hero,
-app-hero h1, .hero h1, #hero h1,
-app-hero p, .hero p, #hero p{
-  transition: color .25s ease, background-color .25s ease, opacity .25s ease;
+/* ---------- Variante INSET (si no quieres full-bleed) ---------- */
+.section-band.inset{ padding-block: 0; background: transparent; border: 0; }
+.section-band.inset > .container{
+  background: var(--_bg);
+  border: 1px solid var(--_bd);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 3vw, 1.5rem);
 }

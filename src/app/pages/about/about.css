@@ -1,343 +1,150 @@
-
 /* =========================
-   ====== EXPERIENCIA ======
+   EXPERIENCIA (theme-aware, sin overrides locales)
    ========================= */
 
-/* Tokens del componente (LIGHT por defecto) */
+/* Solo tamaños/espaciados locales (sin colores) */
 :host{
-  /* tamaño & layout */
-  --card-width: 860px;          /* ancho fijo de cada card */
-  --card-radius: 18px;
-  --logo-size: 110px;
-  --gap-y: 1.2rem;
-
-  /* paleta LIGHT (elegante, azul/gris) */
-  --chip-bg:    #eaf2ff;
-  --chip-bd:    #c7d9ff;
-  --chip-fg:    #184c8a;
-
-  --card-bg:    #ffffff;        /* superficie clara */
-  --card-grad:  linear-gradient(180deg,#ffffff 0%, #f5f9ff 100%);
-  --card-bd:    rgba(17, 27, 56, .14);
-  --halo-bd:    rgba(17, 27, 56, .18);
-
-  --title-accent:#165a96;       /* empresa */
-  --title-role:  #0f172a;       /* rol */
-  --text:        #42526b;       /* descripción */
-
-  --logo-bg:     #0d2f4b;       /* círculo */
-  --shadow-sm:   0 1px 2px rgba(2,6,23,.06);
-  --shadow-lg:   0 16px 40px rgba(2,6,23,.16);
+  --exp-card-radius: 18px;
+  --exp-logo-size: 110px;
+  --exp-gap-y: 1.2rem;
 }
 
-/* DARK MODE – contraste marcado y elegante */
-@media (prefers-color-scheme: dark){
-  :host{
-    --chip-bg:    #0b2a41;
-    --chip-bd:    #1a4c72;
-    --chip-fg:    #8fc7ff;
+.experience-wrap{ padding: .75rem 0 1.5rem; }
 
-    --card-bg:    #0f1720;
-    --card-grad:  linear-gradient(180deg,#0f1720 0%, #0b1a26 100%);
-    --card-bd:    rgba(143, 199, 255, .18);
-    --halo-bd:    rgba(143, 199, 255, .26);
-
-    --title-accent:#86c5ff;
-    --title-role:  #eaf4ff;
-    --text:        #c7d6e2;
-
-    --logo-bg:     #0b2233;
-    --shadow-sm:   0 1px 2px rgba(0,0,0,.55);
-    --shadow-lg:   0 18px 48px rgba(0,0,0,.65);
-  }
-}
-
-/* wrapper dentro del .container (ya lo tienes en el HTML) */
-.experience-wrap{ padding: 0.75rem 0 1.5rem; }
-
-/* Chip de sección */
+/* Chip de sección (usa tokens globales) */
 .section-chip{
   display:inline-block;
   margin-bottom:.9rem;
   padding:.38rem .8rem;
   border-radius:9999px;
-  border:1px solid var(--chip-bd);
-  background:var(--chip-bg);
-  color:var(--chip-fg);
+  border:1px solid var(--primary-200);
+  background: var(--primary-100);
+  color: var(--primary-700);
   font-weight:700;
   letter-spacing:.2px;
 }
+:host-context(.dark-theme) .section-chip{
+  background: var(--primary-200);
+  color: var(--primary);
+}
 
-/* Lista centrada */
+/* Lista */
 .experience-container{
   display:flex;
   flex-direction:column;
-  gap:var(--gap-y);
-  align-items:center;              /* centra las cards */
+  gap:var(--exp-gap-y);
+  align-items:stretch; /* ocupa todo el ancho del .container */
 }
 
-/* ===== CARD ===== */
+/* ===== Card ===== */
 .experience-item{
-  width: min(100%, var(--card-width));     /* ancho fijo y responsive */
+  width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr var(--logo-size);
+  grid-template-columns: 1fr var(--exp-logo-size);
   align-items: center;
   gap: 1rem;
 
   padding: 1.1rem 1.25rem;
-  border-radius: var(--card-radius);
-  background: var(--card-grad);
-  border: 1px solid var(--card-bd);
+  border-radius: var(--exp-card-radius);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease, color .22s ease;
 }
-
-/* Hover: resalta sin exagerar */
 .experience-item:hover{
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: color-mix(in srgb, var(--card-bd) 40%, transparent);
+  box-shadow: var(--shadow-lg),
+              0 10px 30px color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
 }
 
-/* Halo fino anclado al card */
+/* Halo exterior opcional */
 .experience-item::after{
   content:"";
   position:absolute;
-  right:.65rem;
-  width: calc(var(--logo-size) + 14px);
-  height: calc(var(--logo-size) + 14px);
+  right:.55rem; top: 50%; transform: translateY(-50%);
+  width: calc(var(--exp-logo-size) + 14px);
+  height: calc(var(--exp-logo-size) + 14px);
   border-radius: 9999px;
-  border: 1px solid var(--halo-bd);
+  border: 1px solid var(--border);
   pointer-events: none;
+  opacity: .7;
 }
 
 /* Texto */
 .experience-content{ min-width:0; }
 .company{
   margin: 0 0 .25rem 0;
-  color: var(--title-accent);
+  color: var(--primary-700);
   font-weight: 800;
   letter-spacing: .2px;
 }
+:host-context(.dark-theme) .company{ color: var(--primary); }
 .role{
   margin: 0 0 .55rem 0;
   font-weight: 800;
-  color: var(--title-role);
+  color: var(--text);
 }
-.period{ font-weight: 700; opacity:.9; }
+.period{ font-weight: 700; opacity:.92; }
 .description{
   margin: 0;
   color: var(--text);
+  opacity: .95;
   line-height: 1.6;
 }
 
-/* Logo circular (con fallback si la imagen falla) */
+/* Logo circular — glassy */
 .experience-logo{
-  width: var(--logo-size);
-  height: var(--logo-size);
-  min-width: var(--logo-size);
-  min-height: var(--logo-size);
+  width: var(--exp-logo-size);
+  height: var(--exp-logo-size);
+  min-width: var(--exp-logo-size);
   border-radius: 9999px;
-  background: var(--logo-bg);
+
   display: grid;
   place-items: center;
   justify-self: end;
+
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-bd);
+  box-shadow:
+    inset 0 8px 18px rgba(2,6,23,.12),
+    0 0 0 6px color-mix(in srgb, var(--bg) 70%, transparent);
+
   position: relative;
-  z-index: 1;
   overflow: hidden;
 }
-.experience-logo::before{
-  content:"";
-  width:58%; height:58%;
-  border-radius:50%;
-  background: rgba(255,255,255,.08);
-  display:block;
-}
+.experience-logo::before{ content:none; }
+
 .experience-logo img{
-  max-width:72%;
-  max-height:72%;
-  object-fit:contain;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,.18));
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
 }
 
-/* Menos movimiento si el usuario lo pide */
+/* Listas */
+.experience-item ul{ margin: .6rem 0 .3rem 1.1rem; }
+.experience-item li{ color: var(--text); opacity: .92; }
+
+/* Reduce movimiento */
 @media (prefers-reduced-motion: reduce){
   .experience-item,
   .experience-item:hover{ transition:none; transform:none !important; }
 }
 
-/* Responsive: en móviles el ancho fijo pasa a 100% y el logo se reduce */
+/* Responsive: logo más compacto en móviles */
 @media (max-width: 600px){
-  :host{ --logo-size: 92px; }
-  .experience-item{
-    grid-template-columns: 1fr var(--logo-size);
-    padding: 1rem 1.05rem;
-  }
+  :host{ --exp-logo-size: 92px; }
+  .experience-item{ padding: 1rem 1.05rem; }
 }
 @media (max-width: 400px){
-  :host{ --logo-size: 80px; }
-  .experience-item{
-    grid-template-columns: 1fr var(--logo-size);
-    padding: .9rem 1rem;
-  }
+  :host{ --exp-logo-size: 80px; }
+  .experience-item{ padding: .9rem 1rem; }
 }
-
-/* ==========================================================
-   EXPERIENCIA — Alto contraste en Dark/Light + logo mejorado
-   (pegar al FINAL del CSS global)
-   ========================================================== */
-
-/* Tarjeta base */
-.experience-item{
-  background: var(--surface) !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 16px !important;
-  box-shadow: var(--shadow-sm) !important;
-  padding: 1.1rem 1.25rem;
-  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
-}
-.experience-item:hover{
-  box-shadow: var(--shadow-lg) !important;
-  border-color: color-mix(in srgb, var(--primary) 28%, var(--border)) !important;
-}
-
-/* Títulos (empresa, cargo) SIEMPRE legibles */
-.experience-item :is(h1,h2,h3,h4,h5,h6){
-  color: var(--text) !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
-}
-
-/* Empresa en color primario */
-.experience-item .company{
-  color: var(--primary) !important;
-  font-weight: 800;
-}
-
-/* Cargo y periodo con buen contraste */
-.experience-item .role{
-  color: var(--text) !important;
-  font-weight: 700;
-  letter-spacing: .2px;
-}
-.experience-item .period{
-  color: var(--text) !important;
-  opacity: .92;
-  font-weight: 700;
-}
-
-/* Descripción y párrafos */
-.experience-item .description,
-.experience-item p{
-  color: var(--text) !important;
-  opacity: .94;
-  line-height: 1.55;
-}
-
-/* Neutraliza utilidades “apagadas” dentro de las tarjetas */
-.experience-item :is(.text-muted,.text-secondary){ 
-  color: var(--text) !important; 
-  opacity: .90 !important;
-}
-.experience-item [class*="opacity-"]{ opacity: 1 !important; }
-
-/* Listas con buen contraste */
-.experience-item ul{ margin: .6rem 0 .3rem 1.1rem; }
-.experience-item li{ color: var(--text) !important; opacity: .92; }
-
-/* Logo circular — estilo coherente con dark */
-.experience-logo{
-  width: 96px; height: 96px; border-radius: 9999px;
-  display: grid; place-items: center;
-  background: linear-gradient(180deg,
-    color-mix(in srgb, var(--nav-bg) 82%, transparent) 0%,
-    color-mix(in srgb, var(--nav-bg) 92%, transparent) 100%);
-  border: 1px solid color-mix(in srgb, var(--nav-text) 15%, transparent);
-  box-shadow: inset 0 8px 22px rgba(0,0,0,.22),
-              0 0 0 6px color-mix(in srgb, var(--nav-bg) 75%, transparent);
-  transition: box-shadow .25s ease, border-color .25s ease;
-}
-.dark-theme .experience-logo{
-  background: linear-gradient(180deg, #0f2233 0%, #0a1727 100%);
-  border-color: color-mix(in srgb, var(--nav-text) 22%, transparent);
-}
-.experience-logo img{
-  max-width: 70%; max-height: 70%; object-fit: contain;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
-}
-.experience-item:hover .experience-logo{
-  box-shadow: inset 0 10px 26px rgba(0,0,0,.26),
-              0 0 0 6px color-mix(in srgb, var(--primary) 18%, transparent);
-}
-
-/* Chip “Experiencia” con colores del tema */
-.section-chip{
-  background: var(--primary-100) !important;
-  border: 1px solid var(--primary-200) !important;
-  color: var(--primary-700) !important;
-}
-.dark-theme .section-chip{
-  background: var(--primary-200) !important;
-  color: var(--primary) !important;
-}
-/* ==========================================================
-   EXPERIENCE – Fix logos + ancho total + armonía light/dark
-   (PÉGALO AL FINAL PARA QUE TOME PRIORIDAD)
-   ========================================================== */
-
-/* 1) Que las cards ocupen el ancho del contenedor (container) */
-.experience-container{
-  align-items: stretch !important;   /* deja de centrar cards con ancho fijo */
-}
-.experience-item{
-  width: 100% !important;            /* en vez de var(--card-width) */
-  max-width: 100% !important;
-}
-
-/* 2) Logo: fondo del círculo usando superficies del tema (no negro) */
-.experience-logo{
-  /* círculo limpio y centrado */
-  display: grid;
-  place-items: center;
-
-  /* tamaño ya lo traes por --logo-size, manténlo */
-  aspect-ratio: 1 / 1;               /* asegura círculo perfecto */
-  background: var(--surface) !important;      /* ← adiós disco negro */
-  border: 1px solid var(--border) !important;
-
-  /* halo suave exterior para dar profundidad */
-  box-shadow:
-    inset 0 8px 18px rgba(2,6,23,.08),
-    0 0 0 6px color-mix(in srgb, var(--bg) 75%, transparent);
-
-  overflow: hidden;
-}
-
-/* elimina el “brillo” interior que tapaba el centro */
-.experience-logo::before{ display: none !important; }
-
-/* 3) Centrado real de la imagen del logo y sin recortes */
-.experience-logo img{
-  display: block;
-  width: 68%;
-  height: 68%;
-  object-fit: contain;
-  margin: auto;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
-}
-
-/* 4) Dark mode: círculo ligeramente más oscuro pero NUNCA negro */
-.dark-theme .experience-logo{
-  background: color-mix(in srgb, var(--bg) 86%, #000 14%) !important;
-  border-color: color-mix(in srgb, var(--nav-text) 20%, transparent) !important;
-  box-shadow:
-    inset 0 10px 22px rgba(0,0,0,.20),
-    0 0 0 6px color-mix(in srgb, var(--bg) 65%, transparent);
-}
-
-/* 5) Ajuste de spacing para que el anillo no invada la tarjeta */
-.experience-item::after{
-  right: .5rem;      /* si el anillo te queda muy pegado, baja/ajusta aquí */
+@media (max-width: 320px){
+  :host{ --exp-logo-size: 70px; }
+  .experience-item{ padding: .8rem .9rem; }
 }

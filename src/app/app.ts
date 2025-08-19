@@ -14,13 +14,24 @@ import { Hero } from './pages/hero/hero';
   template: `
     <div class="d-flex flex-column min-vh-100">
       <app-navbar></app-navbar>
-      <app-hero></app-hero>
-      <section id="about" class="container"><app-about></app-about></section>
-      <section id="clients" class="container"><app-clients></app-clients></section>
-      <section id="projects" class="container"><app-projects></app-projects></section>
-
+      <section id="hero" class="container"><app-hero></app-hero></section>
+      <section id="about" class="section-band band-iris">
+        <div class="container">
+          <app-about></app-about>
+        </div>
+      </section>
+      <section id="clients" class="section-band band-cyan">
+        <div class="container">
+          <app-clients></app-clients>
+        </div>
+      </section>
+      <section id="projects" class="section-band band-sky">
+        <div class="container">
+          <app-projects></app-projects>
+        </div>
+      </section>
       <app-footer></app-footer>
     </div>
   `,
 })
-export class App {}
+export class App { }

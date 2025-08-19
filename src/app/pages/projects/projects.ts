@@ -22,61 +22,17 @@ export class Projects {
     title: 'Portafolio Angular',
     description: 'Sitio personal con SSR, diseño pastel y dark mode.',
     image: 'assets/icons/angular.svg',
-    link: 'https://tu-demo.netlify.app',
+    link: 'https://github.com/vmorenov/portafolio-angular',
     tag: 'Web',
-    tech: ['Angular', 'Bootstrap']
+    tech: ['Angular', 'Bootstrap', 'Google Recaptcha v3', 'PKCE']
   },
   {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
-  },
-   {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
-  }
-  , {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
-  }, {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
-  }, {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
-  }, {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
-  }, {
-    title: 'Modelo Clínica',
-    description: 'PL/SQL para modelo de clínica y farmacia, con scripts de inicialización.',
-    image: 'assets/icons/oracle.svg',
-    link: 'https://github.com/tunick/clinica',
-    tag: 'DB',
-    tech: ['PL/SQL', 'Oracle']
+    title: 'Microservicio EnvioEmail',
+    description: 'Microservicio para enviar correos electrónicos utilizando Spring Boot y Spring email, con CI/CD hacia Cloud Run.',
+    image: 'assets/icons/springboot.svg',
+    link: 'https://github.com/vmorenov/senderEmail',
+    tag: 'API',
+    tech: ['Spring Boot', 'GCP', 'OpenAPI', 'Java' ]
   }
 ];
 

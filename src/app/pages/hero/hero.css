@@ -1,16 +1,14 @@
 /* =========================
-   HERO (theme-aware + legible)
+   HERO (JAMM-like, theme-aware + legible)
    ========================= */
 
-/* Wrapper del hero: usa las variables del tema */
 .hero-landing{
-  background: var(--bg) !important;            /* integra con el resto de la SPA */
+  background: var(--bg) !important;
   padding: clamp(2.2rem, 6vw, 4rem) 0;
   border-bottom: 1px solid var(--border);
   transition: background-color .25s ease, border-color .25s ease;
 }
 
-/* Layout */
 .hero-grid{
   display: grid;
   align-items: center;
@@ -18,25 +16,25 @@
   grid-template-columns: 1.1fr 0.9fr;
 }
 
-/* Asegura que el texto esté por encima de capas decorativas */
 .hero-copy{ position: relative; z-index: 1; }
 
-/* Título principal y acento */
 .hero-title{
   margin: 0 0 .6rem;
   line-height: 1.1;
   font-size: clamp(2.2rem, 4.5vw, 3.2rem);
   color: var(--text) !important;
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
-  -webkit-text-fill-color: currentColor !important;
 }
 .hero-title .accent{
   color: var(--primary) !important;
   font-weight: 800;
 }
+.hero-title .brand{
+  background: var(--brand-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-/* Subtítulo / lead */
 .hero-subtitle{
   margin: 0 0 1rem;
   max-width: 52ch;
@@ -44,7 +42,6 @@
   opacity: .92;
 }
 
-/* CTA */
 .hero-cta{
   display: flex;
   gap: .9rem;
@@ -82,10 +79,11 @@
   flex-wrap: wrap;
   margin-top: .35rem;
 }
+.tech,
 .tech-pill{
   font-size: .9rem;
   padding: .45rem .7rem;
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--primary-100);
   border: 1px solid var(--primary-200);
   color: var(--text);
@@ -94,15 +92,10 @@
   display: inline-flex;
   align-items: center;
   gap: .45rem;
-  padding: .42rem .6rem;
-  border-radius: 10px;
-  background: var(--primary-100);
-  border: 1px solid var(--primary-200);
-  color: var(--text);
-  text-decoration: none;
   font-weight: 600;
   font-size: .95rem;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  text-decoration: none;
 }
 .tech:hover{
   transform: translateY(-2px);
@@ -111,7 +104,7 @@
 }
 .tech img{ width: 20px; height: 20px; display: block; }
 
-/* Figura de la derecha con aro/halo y recorte */
+/* Visual derecha */
 .hero-visual{
   position: relative;
   width: min(100%, 520px);
@@ -125,8 +118,8 @@
   position: absolute;
   inset: 4% 1.5% 6% 12%;
   border-radius: 42% 58% 60% 40% / 40% 42% 58% 60%;
-  background: var(--hero-blob, #0D5659);        /* fallback por si no está definido */
-  box-shadow: 0 0 0 10px var(--hero-ring, rgba(2,6,23,.06));
+  background: var(--hero-blob);
+  box-shadow: 0 0 0 10px var(--hero-ring);
   z-index: 0;
 }
 .hero-photo{
@@ -157,17 +150,15 @@
   .hero-visual{ width: clamp(220px, 55vw, 340px); }
 }
 
-/* Seguridad: si entra alguna utilidad que baje opacidad del hero */
+/* Seguridad (evita opacidades accidentales) */
 .hero-landing [class*="opacity-"]{ opacity: 1 !important; }
-
-/* Dark mode: no usamos colores “duros”, solo variables */
 .dark-theme .hero-landing{ background: var(--bg) !important; }
 .dark-theme .tech{
   background: var(--primary-100);
   border-color: var(--primary-200);
 }
 
-/* Transiciones suaves para el hero */
+/* Transiciones suaves */
 .hero-landing,
 .hero-landing *:where(h1, h2, p, a){
   transition: color .25s ease, background-color .25s ease, opacity .25s ease;

@@ -1,27 +1,59 @@
-<section class="container section-band clients-wrap">
+<div class="clients-wrap">
   <div class="section-chip">Clientes</div>
 
-  <!-- scroller accesible (mouse, touch, teclado) -->
   <div class="clients-scroller no-scrollbar" #scroller>
-    <a class="client-card"
-       *ngFor="let c of clients"
-       [routerLink]="['/clients', c.slug]"
-       [attr.aria-label]="'Ver historial con ' + c.name">
+    @for (c of clients; track c.slug) {
+      <a class="client-card"
+         [routerLink]="['/clients', c.slug]"
+         [attr.aria-label]="'Ver historial con ' + c.name">
 
-      <div class="client-ring">
-        <img [src]="c.logo" [alt]="c.name" loading="lazy">
-      </div>
+        <div class="client-top">
+          <div class="client-ring">
+            <img [src]="c.logo" [alt]="c.name" loading="lazy">
+          </div>
 
-      <div class="client-meta">
-        <h3 class="client-name">{{ c.name }}</h3>
-        <p class="client-summary">{{ c.summary }}</p>
-        <div class="tags" *ngIf="c.tags?.length">
-          <span class="pill" *ngFor="let t of c.tags">{{ t }}</span>
+        <div class="client-meta">
+          <h3 class="client-name">{{ c.name }}</h3>
+          <p class="client-summary">{{ c.summary }}</p>
+
+          @if (c.tags.length) {
+            <div class="tags">
+              @for (t of c.tags; track t) { <span class="pill">{{ t }}</span> }
+            </div>
+          }
         </div>
-      </div>
+        </div>
 
-      <i class="bi bi-arrow-right-short arrow"></i>
-    </a>
+        @let hs = c.highlights ?? [];
+        @if (hs.length > 0) {
+          <div class="client-highlights">
+            <div class="hl-head">Proyectos clave</div>
+            <ul class="hl-list">
+              @for (h of hs; track $index) {
+                @if ($index < 2) {
+                  <li class="hl-item">
+                    <div class="hl-title">
+                      {{ h.title }} @if (h.role) { <span class="hl-role">• {{ h.role }}</span> }
+                    </div>
+                    @let tech = h.tech ?? [];
+                    @if (tech.length > 0) {
+                      <div class="hl-tech">
+                        @for (tt of tech; track $index) {
+                          @if ($index < 3) { <span class="mini-pill">{{ tt }}</span> }
+                        }
+                      </div>
+                    }
+                  </li>
+                }
+              }
+            </ul>
+            @if (hs.length > 2) {
+              <div class="hl-more">+{{ hs.length - 2 }} más en el detalle</div>
+            }
+          </div>
+        }
+      </a>
+    }
   </div>
 
   <div class="scroller-controls">
@@ -32,4 +64,4 @@
       <i class="bi bi-chevron-right"></i>
     </button>
   </div>
-</section>
+</div>

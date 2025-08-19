@@ -11,9 +11,9 @@
 
     <!-- Menú (drawer en móvil) -->
     <ul class="nav-links" [class.open]="menuOpen" id="nav-drawer" (click)="closeMenu()">
-      <li><a class="nav-link" (click)="go('about')" [class.active]="active==='about'">Inicio</a></li>
+      <li><a class="nav-link" (click)="goHome()" >Inicio</a></li>
       <li><a class="nav-link" (click)="go('projects')" [class.active]="active==='projects'">Proyectos</a></li>
-      <li><a class="nav-link" (click)="go('experience')" [class.active]="active==='experience'">Experiencia</a></li>
+      <li><a class="nav-link" (click)="go('about')" [class.active]="active==='about'">Experiencia</a></li>
       <li><a class="nav-link" (click)="go('clients')" [class.active]="active==='clients'">Clientes</a></li>
       <li><a class="nav-link" (click)="go('contact')" [class.active]="active==='contact'">Contacto</a></li>
 
